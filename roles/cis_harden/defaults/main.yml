@@ -1,4 +1,52 @@
 ---
+## Variables file
+## metadata for benchmark
+win2019cis_benchmark:
+- "type: CIS"
+- "version: '1.2.1'"
+- "os: Windows2019"
+#- "epoch: {{ ansible_date_time.epoch }}" # To be populated via wrapper script using inline vars
+#- "hostname: {{ ansible_hostname }}" # To be populated via wrapper script using inline vars
+# - "server_type: Standalone Server" # To be populated via wrapper script using inline vars
+
+
+######################
+## Server Variables ##
+######################
+is_domain_controller: false
+is_standalone: true
+reboot_required: false
+win2019cis_use_iis: false
+exchange_server_group: false
+
+###################
+# Reference files #
+###################
+gpresult_file: 'c:\goss\gpresult.txt'
+auditresult_file: 'c:\goss\audit_pol.txt'
+secedit_file: 'c:\goss\secedit_conf.txt'
+#########
+## CIS ##
+#########
+
+##############
+# CIS Levels #
+##############
+win2019cis_level_1: false
+win2019cis_level_2: true
+win2019cis_NG: true # Note this needs UEFI and virtualication enabled systems - rollback is very manual
+
+################
+# Server Roles #
+################
+# If a Server uses the following set to true
+# certification Authority role
+win2019cis_cert_auth_role: false
+# WINS server Feature Installed
+win2019cis_WINS_server: false
+win2019_use_domain_firewall: false
+win2019_use_private_firewall: false
+win2019_use_public_firewall: false
 
 # Section 1 Account Policies
 # 1.1.x Password Policy, 1.2.x Account Lockout Policy
