@@ -16,7 +16,7 @@ win2019cis_benchmark:
 is_domain_controller: false
 is_standalone: true
 reboot_required: false
-win2019cis_use_iis: false
+win2019cis_use_iis: true
 exchange_server_group: false
 
 ###################
