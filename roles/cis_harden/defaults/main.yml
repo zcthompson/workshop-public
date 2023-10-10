@@ -16,7 +16,7 @@ win2019cis_benchmark:
 is_domain_controller: false
 is_standalone: true
 reboot_required: false
-win2019cis_use_iis: true
+win2019cis_use_iis: false
 exchange_server_group: false
 
 ###################
@@ -34,7 +34,7 @@ secedit_file: 'c:\goss\secedit_conf.txt'
 ##############
 win2019cis_level_1: false
 win2019cis_level_2: true
-win2019cis_NG: true # Note this needs UEFI and virtualication enabled systems - rollback is very manual
+win2019cis_NG: false # Note this needs UEFI and virtualication enabled systems - rollback is very manual
 
 ################
 # Server Roles #
