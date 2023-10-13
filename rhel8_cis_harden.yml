@@ -1,0 +1,54 @@
+---
+- name: Post installation RHEL 8 Configuration and Hardening
+  hosts: "{{ default_target | default('all') }}"
+  vars_files:
+    - secrets.yml
+  vars:
+    is_container: false
+  become: true
+  tasks:
+    - name: Run RHEL post provision role
+      include_role: 
+        name: rhel8_post
+      tags:
+        - post
+      ignore_errors: yes
+
+    - name: Include RHEL 9 CIS role
+      include_role:
+        name: rhel_9_cis
+      when: ansible_distribution == 'RedHat' and ansible_distribution_major_version == '9'
+      tags:
+        - cis_stig
+
+    - name: Include RHEL 8 CIS role
+      include_role:
+        name: rhel_8_cis
+      when: ansible_distribution == 'RedHat' and ansible_distribution_major_version == '8'
+      tags:
+        - cis_stig
+
+    - name: Run RHEL 8 DISA STIG ROLE
+      include_role:
+        name: rhel8_stig
+      when: ansible_distribution == 'RedHat' and ansible_distribution_major_version == '8'
+      tags:
+        - disa_stig
+
+    #- role: amazon2_cis2
+    #  tags:
+    #    - cis_stig
+    #  when: ansible_facts['distribution'] == "Amazon"
+
+
+    #- role: ubuntu_cis2
+    #  tags:
+    #    - cis_stig
+    #  when: ansible_facts['distribution'] == "Ubuntu"
+      
+    - name: Begin graphical lockdown
+      include_role: 
+        name: graphical_lockdown
+      when: ansible_distribution == 'RedHat' and ansible_distribution_major_version == '8'
+      tags:
+        - gnome
