@@ -3,4 +3,4 @@
   hosts: windows
   gather_facts: true
   roles:
-    - role: cis_harden
+    - role: windows_2k19_cis
